@@ -1,0 +1,76 @@
+/* GRID SYSTEM */
+$cols       :   12;
+$gap        :   24px;
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+    padding-left: $gap / 2;
+    padding-right: $gap / 2;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    // margin-left: $gap / -2;
+    // margin-right: $gap / -2;
+}
+
+[class*="col-"],
+.col{
+    width: 100%;
+    max-width: 100%;
+    padding-left: $gap / 2;
+    padding-right: $gap / 2;
+}
+
+@mixin grid-system($mq){
+    .#{ $mq }{
+        flex: 1 0 0;
+    }
+    
+    @for $col from 1 through $cols{
+        .#{ $mq }-#{ $col }{
+            flex: 0 0 (100% / $cols) * $col;
+            max-width: (100% / $cols) * $col;
+        }
+    }
+}
+
+@mixin offset-grid-system($mq){
+    @for $offset from 1 through $cols{
+        .#{ $mq }-#{ $offset }{
+            margin-left: (100% / $cols) * $offset;
+        }
+    }
+}
+
+@include grid-system(col);
+@include offset-grid-system(offset);
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    @include grid-system(col-sm);
+    @include offset-grid-system(offset-sm);
+    
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    @include grid-system(col-md);
+    @include offset-grid-system(offset-md);
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    @include grid-system(col-lg);
+    @include offset-grid-system(offset-lg);
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    @include grid-system(col-xl);
+    @include offset-grid-system(offset-xl);
+}
+
+/* END GRID SYSTEM */

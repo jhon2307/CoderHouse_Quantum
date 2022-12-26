@@ -1,0 +1,273 @@
+@import 'reset';
+@import 'config';
+@import 'mixins';
+@import 'fonts';
+@import 'grid';
+
+.Header {
+    &-div {
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    &-h1 {}
+
+    &-h5 {
+        font-weight: 400;
+    }
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.isHidden{
+    display: none!important;
+}
+
+.Main {
+    .button-effect{
+        position: relative;
+        background-color: white;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                red, blue, deeppink, blue, red, blue, deeppink, blue
+            );
+            background-size: 800%;
+            border-radius: 10px;
+            filter: blur(10px);
+            animation: glowing 20s linear infinite;
+        }
+    }   
+
+    .haveError{
+        border: 1px solid red!important;
+        color: red;
+    }
+
+    .Section {
+        &-div {
+            padding: 1rem 5vw 0 5vw;
+            @include flexible(flex, column, center, center, 1rem);
+            flex-wrap: wrap;
+            @include media-md{
+                @include flexible(flex, row, center, center, 1rem);
+                padding: 3rem 15vw 0 15vw;
+            }
+        }
+
+        &-button {
+            font-size: 0.9em;
+            // border: 2px solid $primary-color;
+            color: $primary-color;
+            border-radius: 10px;
+            cursor: pointer;
+            flex: 0 0 auto;
+            padding: 0.5rem 1rem;
+            @include flexible(flex, row, space-between, center, 0.5rem);
+            &:hover {
+                background-color: $primary-color;
+                color: white;
+            }
+
+        }
+
+        &-div--input {
+            width: 100%;
+            border: 1px solid $light-text-color;
+            border-radius: 10px;
+            @include flexible(flex, row, start, center, 0);
+            color: $light-text-color;
+            padding: 0.5rem;
+            
+        }
+
+        &-input {
+            font-size: 0.9em;
+            // margin-left: 0.5rem;
+        }
+
+        &-div--content {
+            padding: 0 1vw;
+            padding-top: 2rem;
+            @include media-md {
+                padding: 1rem 15vw 0 15vw;
+                padding-top: 2rem;
+            }
+        }
+
+        &-div--not-found {
+            @include flexible(flex, column, center, center, 0);
+        }
+
+        &-span {
+            font-size: 2em;
+        }
+
+        &-h4 {}
+
+        &-table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        &-tr {
+            background-color: white;
+
+            &:first-child {
+                background-color: $primary-color;
+            }
+
+            &:nth-child(even) {
+                background-color: $bg-color;
+            }
+        }
+
+        &-th {
+            padding: 1rem 0;
+            color: white;
+
+        }
+
+        &-td {
+            padding: 1rem 0;
+
+        }
+        &-span--table {
+            font-size: 0.7em;
+        }
+
+        &-td--final {
+            font-weight: bolder;
+        }
+
+        &-div--top {
+            padding: 2rem 0;
+        }
+
+        &-div--top-container {
+            @include flexible(flex, column, start, center, 0);
+            height: 100%;
+            flex-wrap: wrap;
+        }
+        
+        &-div--top-list {
+            @include flexible(flex, column, space-between, center, 1rem);
+            width: 75%;
+        }
+
+        &-img{
+            margin-bottom: 1.5rem;
+            @include media-md {
+                margin-bottom: 0;
+            }
+        }
+
+        &-div--top-list-item {
+            padding: 1rem 0;
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            width: 100%;
+            position: relative;
+            &:first-child {
+                background-color: #FFDD1A;
+                .Section-div--medal-student{
+                    background-image: url('../assets/img/medalla_oro.png');
+                }
+            }
+            &:nth-child(2) {
+                background-color: #C0C0C0;
+                .Section-div--medal-student{
+                    background-image: url('../assets/img/medalla_plata.png');
+                }
+            }
+            &:nth-child(3) {
+                background-color: #C38359;
+                .Section-div--medal-student{
+                    background-image: url('../assets/img/medalla_bronce.png');
+                }
+              }
+        }
+        &-div--medal-student{
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 2.5rem;
+            height: 3.125rem;
+            position: absolute;
+            top: 0;
+            right: 5%;
+        }
+        &-h4 {
+            font-size: 1.5em;
+        }
+        &-h5 {
+            font-size: 1.2em;
+            color: $bg-color;
+            font-weight: 400;
+        }
+        &-div--form-student, &-div--form-course{
+            @include flexible(flex, column, start, center, 1rem);
+            width: 100%;
+            padding: 1rem 0;
+        }
+        &-form{
+            width: 100%;
+            @include media-md{
+                width: 65%;
+            }
+        }
+        &-div--form-row{
+            margin-bottom: 1.5rem;
+        }
+        &-input--add{
+            border: 1px solid $light-text-color;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            height: inherit;
+        }
+        &-button--submit{
+            background-color: $primary-color;
+            border: 0;
+            color: white;
+            cursor: pointer;
+        }
+        &-select{
+            width: 100%;
+            border: 1px solid $light-text-color;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+        }
+        &-input--number{
+        }
+        &-small{
+            width: 100%;
+            text-align: end;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 0.8em;
+            color: red;
+        }
+    }
+
+   
+
+}

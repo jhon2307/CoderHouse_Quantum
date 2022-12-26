@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Calculadora de Notas</title>
+</head>
+
+<body>
+    <header class="Header">
+        <div class="Header-div">
+            <h1 class="Header-h1">Quantum</h1>
+            <h5 class="Header-h5">Dedicate a tu pasión, nosotros hacemos lo demás.</h5>
+        </div>
+    </header>
+
+    <main class="Main">
+        <section class="Section">
+            <div class="Section-div">
+                <button class="Section-button isHidden" onclick="mostrarAgregarCurso()">
+                    <span class="material-symbols-outlined">add</span>
+                    Agregar Curso
+                </button>
+                <button class="Section-button button-effect isHidden" onclick="mostrarAgregarEstudiante()">
+                    <span class="material-symbols-outlined">person_add</span>
+                    Agregar Estudiante
+                </button>
+                <button class="Section-button isHidden" onclick="mostrarListaEstudiantes()">
+                    <span class="material-symbols-outlined">list</span>
+                    Ver Estudiantes
+                </button>
+                <button class="Section-button isHidden" onclick="ordenarEstudiantes()">
+                    <span class="material-symbols-outlined">star</span>
+                    Top 3
+                </button>
+                <div class="Section-div--input isHidden">
+                    <input class="Section-input" id="buscador" oninput="buscarEstudiantes()" placeholder="Buscar Estudiante..."></input>
+                    <span class="material-symbols-outlined">search</span>
+                </div>
+            </div>
+            <div class="Section-div--content">
+
+                <div class="Section-div--form-course">
+                    <h3 class="Section-h3">Vaya, es la primera vez que te vemos, por favor agrega un curso para continuar</h3>
+                    <form class="Section-form" onsubmit="guardarCurso(event)">
+                        <div class="Section-div--form-row row">
+                            <div class="Section-div--form-group col-md-12">
+                                <label for="inputName">Nombre</label>
+                                <input class="Section-input Section-input--add" id="inputName" type="text" placeholder="Nombre de curso" required>
+                            </div>
+                        </div>
+                        <div class="row Section-div--form-row">
+                            <div class="Section-div--form-group col-md-4">
+                                <label for="inputNumber1">Valor Nota 1 (%)</label>
+                                <input class="Section-input Section-input--add Section-input--number" id="inputNumber1" type="number" placeholder="Porcentaje" max="100" min="0" oninput="calcularPorcentaje3()" required>
+                            </div>
+                            <div class="Section-div--form-group col-md-4">
+                                <label for="inputNumber2">Valor Nota 2 (%)</label>
+                                <input class="Section-input Section-input--add Section-input--number" id="inputNumber2" type="number" placeholder="Porcentaje" max="100" min="0" oninput="calcularPorcentaje3()"  required>
+                            </div>
+                            <div class="Section-div--form-group col-md-4">
+                                <label for="inputNumber3">Valor Nota 3 (%)</label>
+                                <input class="Section-input Section-input--add Section-input--number" id="inputNumber3" type="number" placeholder="Porcentaje" max="100" min="0"  required disabled>
+                            </div>
+                        </div>
+                        <div class="row Section-div--form-row">
+                            <small class="Section-small isHidden" id="errorMessage">Por favor introduce porcentaje válido para la nota.</small>
+                            <button class="Section-input--add Section-button--submit col-md-12" type="submit">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script src="js/calculadora.js"></script>
+</body>
+
+</html>

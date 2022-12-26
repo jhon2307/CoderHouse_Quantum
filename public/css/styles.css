@@ -1,0 +1,982 @@
+@charset "UTF-8";
+/* Definimos las Custom properties */
+:root {
+  /* Colores */
+  --negro: #393939;
+  /* Tipografía */
+  --tipo-principal: "Poppins", sans-serif;
+  --tipo-secundaria: Verdana;
+}
+
+/* Desactivamos los animations en el caso de que el usuario haya configurado el modo sin animation */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation: none !important;
+            animation: none !important;
+    transition: none !important;
+  }
+}
+/* Reseteamos los margin y paddings de todas las etiquetas */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+*::before, *::after {
+  display: block;
+}
+
+/* Evitamos problemas con las imagenes */
+img, picture, video, iframe, figure, input {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ... excepto los que se encuentran en párrafos */
+p a {
+  display: inline;
+}
+
+/* Quitamos los puntos de los <li> */
+li {
+  list-style-type: none;
+}
+
+/* Configuramos anclas suaves */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Desactivamos estilos por defecto de las principales etiquetas de texto */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, blockquote, i, b, u, em {
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Evitamos problemas con los pseudoelementos de quotes */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* Configuramos el texto que seleccionamos */
+::-moz-selection {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+::selection {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+/* Nivelamos problemas de tipografías y colocación de formularios */
+form, input, textarea, select, button, label {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  background-color: transparent;
+  color: inherit;
+  display: block;
+  /* (Opcional) */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+textarea, input {
+  height: 100%;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+
+/* Reseteamos las tablas */
+table, tr, td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+  width: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+/* Configuramos la tipografía para toda la web */
+body {
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: var(--tipo-principal);
+  color: var(--negro);
+}
+
+/* Media Queries */
+h1 {
+  font-weight: 800;
+  font-size: 1.5em;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 1.3em;
+  letter-spacing: -0.05em;
+}
+
+h3 {
+  font-weight: 800;
+  font-size: 1.1em;
+  letter-spacing: -0.05em;
+}
+
+h4 {
+  font-weight: 800;
+  font-size: 0.9em;
+  letter-spacing: -0.05em;
+}
+
+h5 {
+  font-weight: 800;
+  font-size: 0.7em;
+  letter-spacing: -0.05em;
+}
+
+h6 {
+  font-weight: 800;
+  font-size: 0.5em;
+  letter-spacing: -0.05em;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-weight: 800;
+    font-size: 2em;
+    letter-spacing: -0.05em;
+  }
+  h2 {
+    font-weight: 800;
+    font-size: 1.8em;
+    letter-spacing: -0.05em;
+  }
+  h3 {
+    font-weight: 800;
+    font-size: 1.6em;
+    letter-spacing: -0.05em;
+  }
+  h4 {
+    font-weight: 800;
+    font-size: 1.4em;
+    letter-spacing: -0.05em;
+  }
+  h5 {
+    font-weight: 800;
+    font-size: 1.2em;
+    letter-spacing: -0.05em;
+  }
+  h6 {
+    font-weight: 800;
+    font-size: 1em;
+    letter-spacing: -0.05em;
+  }
+}
+@media (min-width: 768px) {
+  a {
+    font-size: 0.9em !important;
+  }
+}
+a {
+  font-size: 0.7em;
+}
+
+p {
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+/* GRID SYSTEM */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[class*=col-],
+.col {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.col {
+  flex: 1 0 0;
+}
+
+.col-1 {
+  flex: 0 0 8.3333333333%;
+  max-width: 8.3333333333%;
+}
+
+.col-2 {
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+}
+
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-4 {
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+}
+
+.col-5 {
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-7 {
+  flex: 0 0 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+
+.col-8 {
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+}
+
+.col-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-10 {
+  flex: 0 0 83.3333333333%;
+  max-width: 83.3333333333%;
+}
+
+.col-11 {
+  flex: 0 0 91.6666666667%;
+  max-width: 91.6666666667%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.offset-1 {
+  margin-left: 8.3333333333%;
+}
+
+.offset-2 {
+  margin-left: 16.6666666667%;
+}
+
+.offset-3 {
+  margin-left: 25%;
+}
+
+.offset-4 {
+  margin-left: 33.3333333333%;
+}
+
+.offset-5 {
+  margin-left: 41.6666666667%;
+}
+
+.offset-6 {
+  margin-left: 50%;
+}
+
+.offset-7 {
+  margin-left: 58.3333333333%;
+}
+
+.offset-8 {
+  margin-left: 66.6666666667%;
+}
+
+.offset-9 {
+  margin-left: 75%;
+}
+
+.offset-10 {
+  margin-left: 83.3333333333%;
+}
+
+.offset-11 {
+  margin-left: 91.6666666667%;
+}
+
+.offset-12 {
+  margin-left: 100%;
+}
+
+@media (min-width: 576px) {
+  .col-sm {
+    flex: 1 0 0;
+  }
+  .col-sm-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+  .col-sm-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+  .col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-sm-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .col-sm-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+  .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-sm-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+  .col-sm-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+  .col-sm-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-sm-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+  .col-sm-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+  .col-sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .offset-sm-1 {
+    margin-left: 8.3333333333%;
+  }
+  .offset-sm-2 {
+    margin-left: 16.6666666667%;
+  }
+  .offset-sm-3 {
+    margin-left: 25%;
+  }
+  .offset-sm-4 {
+    margin-left: 33.3333333333%;
+  }
+  .offset-sm-5 {
+    margin-left: 41.6666666667%;
+  }
+  .offset-sm-6 {
+    margin-left: 50%;
+  }
+  .offset-sm-7 {
+    margin-left: 58.3333333333%;
+  }
+  .offset-sm-8 {
+    margin-left: 66.6666666667%;
+  }
+  .offset-sm-9 {
+    margin-left: 75%;
+  }
+  .offset-sm-10 {
+    margin-left: 83.3333333333%;
+  }
+  .offset-sm-11 {
+    margin-left: 91.6666666667%;
+  }
+  .offset-sm-12 {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .col-md {
+    flex: 1 0 0;
+  }
+  .col-md-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+  .col-md-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-md-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .col-md-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-md-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+  .col-md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-md-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+  .col-md-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+  .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .offset-md-1 {
+    margin-left: 8.3333333333%;
+  }
+  .offset-md-2 {
+    margin-left: 16.6666666667%;
+  }
+  .offset-md-3 {
+    margin-left: 25%;
+  }
+  .offset-md-4 {
+    margin-left: 33.3333333333%;
+  }
+  .offset-md-5 {
+    margin-left: 41.6666666667%;
+  }
+  .offset-md-6 {
+    margin-left: 50%;
+  }
+  .offset-md-7 {
+    margin-left: 58.3333333333%;
+  }
+  .offset-md-8 {
+    margin-left: 66.6666666667%;
+  }
+  .offset-md-9 {
+    margin-left: 75%;
+  }
+  .offset-md-10 {
+    margin-left: 83.3333333333%;
+  }
+  .offset-md-11 {
+    margin-left: 91.6666666667%;
+  }
+  .offset-md-12 {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .col-lg {
+    flex: 1 0 0;
+  }
+  .col-lg-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+  .col-lg-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+  .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-lg-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .col-lg-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+  .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-lg-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+  .col-lg-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+  .col-lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-lg-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+  .col-lg-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+  .col-lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .offset-lg-1 {
+    margin-left: 8.3333333333%;
+  }
+  .offset-lg-2 {
+    margin-left: 16.6666666667%;
+  }
+  .offset-lg-3 {
+    margin-left: 25%;
+  }
+  .offset-lg-4 {
+    margin-left: 33.3333333333%;
+  }
+  .offset-lg-5 {
+    margin-left: 41.6666666667%;
+  }
+  .offset-lg-6 {
+    margin-left: 50%;
+  }
+  .offset-lg-7 {
+    margin-left: 58.3333333333%;
+  }
+  .offset-lg-8 {
+    margin-left: 66.6666666667%;
+  }
+  .offset-lg-9 {
+    margin-left: 75%;
+  }
+  .offset-lg-10 {
+    margin-left: 83.3333333333%;
+  }
+  .offset-lg-11 {
+    margin-left: 91.6666666667%;
+  }
+  .offset-lg-12 {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .col-xl {
+    flex: 1 0 0;
+  }
+  .col-xl-1 {
+    flex: 0 0 8.3333333333%;
+    max-width: 8.3333333333%;
+  }
+  .col-xl-2 {
+    flex: 0 0 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+  .col-xl-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-xl-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+  .col-xl-5 {
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+  .col-xl-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-xl-7 {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+  .col-xl-8 {
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+  .col-xl-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-xl-10 {
+    flex: 0 0 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+  .col-xl-11 {
+    flex: 0 0 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+  .col-xl-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .offset-xl-1 {
+    margin-left: 8.3333333333%;
+  }
+  .offset-xl-2 {
+    margin-left: 16.6666666667%;
+  }
+  .offset-xl-3 {
+    margin-left: 25%;
+  }
+  .offset-xl-4 {
+    margin-left: 33.3333333333%;
+  }
+  .offset-xl-5 {
+    margin-left: 41.6666666667%;
+  }
+  .offset-xl-6 {
+    margin-left: 50%;
+  }
+  .offset-xl-7 {
+    margin-left: 58.3333333333%;
+  }
+  .offset-xl-8 {
+    margin-left: 66.6666666667%;
+  }
+  .offset-xl-9 {
+    margin-left: 75%;
+  }
+  .offset-xl-10 {
+    margin-left: 83.3333333333%;
+  }
+  .offset-xl-11 {
+    margin-left: 91.6666666667%;
+  }
+  .offset-xl-12 {
+    margin-left: 100%;
+  }
+}
+/* END GRID SYSTEM */
+.Header-div {
+  text-align: center;
+  padding: 2rem 0;
+}
+.Header-h5 {
+  font-weight: 400;
+}
+
+@-webkit-keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.isHidden {
+  display: none !important;
+}
+
+.Main .button-effect {
+  position: relative;
+  background-color: white;
+}
+.Main .button-effect:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, red, blue, deeppink, blue, red, blue, deeppink, blue);
+  background-size: 800%;
+  border-radius: 10px;
+  filter: blur(10px);
+  -webkit-animation: glowing 20s linear infinite;
+          animation: glowing 20s linear infinite;
+}
+.Main .haveError {
+  border: 1px solid red !important;
+  color: red;
+}
+.Main .Section-div {
+  padding: 1rem 5vw 0 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+  .Main .Section-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 15vw 0 15vw;
+  }
+}
+.Main .Section-button {
+  font-size: 0.9em;
+  color: #0077FF;
+  border-radius: 10px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+.Main .Section-button:hover {
+  background-color: #0077FF;
+  color: white;
+}
+.Main .Section-div--input {
+  width: 100%;
+  border: 1px solid #8A8A8A;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 0;
+  color: #8A8A8A;
+  padding: 0.5rem;
+}
+.Main .Section-input {
+  font-size: 0.9em;
+}
+.Main .Section-div--content {
+  padding: 0 1vw;
+  padding-top: 2rem;
+}
+@media (min-width: 768px) {
+  .Main .Section-div--content {
+    padding: 1rem 15vw 0 15vw;
+    padding-top: 2rem;
+  }
+}
+.Main .Section-div--not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+.Main .Section-span {
+  font-size: 2em;
+}
+.Main .Section-table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+.Main .Section-tr {
+  background-color: white;
+}
+.Main .Section-tr:first-child {
+  background-color: #0077FF;
+}
+.Main .Section-tr:nth-child(even) {
+  background-color: #F0F7FF;
+}
+.Main .Section-th {
+  padding: 1rem 0;
+  color: white;
+}
+.Main .Section-td {
+  padding: 1rem 0;
+}
+.Main .Section-span--table {
+  font-size: 0.7em;
+}
+.Main .Section-td--final {
+  font-weight: bolder;
+}
+.Main .Section-div--top {
+  padding: 2rem 0;
+}
+.Main .Section-div--top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  flex-wrap: wrap;
+}
+.Main .Section-div--top-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 75%;
+}
+.Main .Section-img {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .Main .Section-img {
+    margin-bottom: 0;
+  }
+}
+.Main .Section-div--top-list-item {
+  padding: 1rem 0;
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  width: 100%;
+  position: relative;
+}
+.Main .Section-div--top-list-item:first-child {
+  background-color: #FFDD1A;
+}
+.Main .Section-div--top-list-item:first-child .Section-div--medal-student {
+  background-image: url("../assets/img/medalla_oro.png");
+}
+.Main .Section-div--top-list-item:nth-child(2) {
+  background-color: #C0C0C0;
+}
+.Main .Section-div--top-list-item:nth-child(2) .Section-div--medal-student {
+  background-image: url("../assets/img/medalla_plata.png");
+}
+.Main .Section-div--top-list-item:nth-child(3) {
+  background-color: #C38359;
+}
+.Main .Section-div--top-list-item:nth-child(3) .Section-div--medal-student {
+  background-image: url("../assets/img/medalla_bronce.png");
+}
+.Main .Section-div--medal-student {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 2.5rem;
+  height: 3.125rem;
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+.Main .Section-h4 {
+  font-size: 1.5em;
+}
+.Main .Section-h5 {
+  font-size: 1.2em;
+  color: #F0F7FF;
+  font-weight: 400;
+}
+.Main .Section-div--form-student, .Main .Section-div--form-course {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+.Main .Section-form {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .Main .Section-form {
+    width: 65%;
+  }
+}
+.Main .Section-div--form-row {
+  margin-bottom: 1.5rem;
+}
+.Main .Section-input--add {
+  border: 1px solid #8A8A8A;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  height: inherit;
+}
+.Main .Section-button--submit {
+  background-color: #0077FF;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+.Main .Section-select {
+  width: 100%;
+  border: 1px solid #8A8A8A;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+.Main .Section-small {
+  width: 100%;
+  text-align: end;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: red;
+}

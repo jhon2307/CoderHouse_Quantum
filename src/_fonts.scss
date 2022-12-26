@@ -1,0 +1,38 @@
+$font-size: 1.5em;
+
+@for $i from 1 through 6 {
+
+  h#{$i} {
+    font-weight: 800;
+    font-size: $font-size - 0.2 * ($i - 1);
+    letter-spacing: -0.05em;
+  }
+}
+
+@include media-sm{
+  $font-size: 2em;
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-weight: 800;
+      font-size: $font-size - 0.2 * ($i - 1);
+      letter-spacing: -0.05em;
+    }
+  }
+}
+
+@include media-md{
+  a{
+    font-size: 0.9em!important;
+  }
+}
+
+a{
+  font-size: 0.7em;
+}
+
+p {
+    font-weight: 400;
+    font-size: 0.8em;
+}
+
